@@ -1,25 +1,26 @@
 import { Page } from "@playwright/test";
 import { LoginPage } from "../dsl/web/loginPage";
+import { Context } from "./context";
 
 class Gateway {
     pageObjects: WebRegister
     
-    constructor(page: Page) {
-        this.pageObjects = new WebRegister(page)
+    constructor(ctx: Context) {
+        this.pageObjects = new WebRegister(ctx)
     }
 }
 
 class WebRegister {
     #loginPage: LoginPage
-    #page: Page
+    #ctx: Context
 
-    constructor(page: Page) {
-        this.#page = page
+    constructor(ctx: Context) {
+        this.#ctx = ctx
     }
 
     get loginPage() { // lazy loading
         if (!this.#loginPage) {
-            this.#loginPage = new LoginPage(this.#page)
+            this.#loginPage = new LoginPage(this.#ctx)
         }
         return this.#loginPage
     }

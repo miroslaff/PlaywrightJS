@@ -12,16 +12,17 @@ export const test = base.extend<ContextFixture>({
     }
 })
 
-export {expect} from '@playwright/test'
 
 
 class Context {
     dsl: Gateway;
     readonly page: Page;
-
+    
     constructor(page: Page) {
         this.page = page;
-        this.dsl = new Gateway(page);
+        this.dsl = new Gateway(this);
     }
 }
 
+export {expect} from '@playwright/test'
+export {Context}

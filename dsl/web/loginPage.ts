@@ -1,14 +1,15 @@
 import {Page, Locator} from '@playwright/test'
+import {Context} from '../../core/context'
 
 class LoginPage {
-    page: Page
+    context: Context
     
-    constructor(page: Page) {
-        this.page = page
+    constructor(ctx: Context) {
+        this.context = ctx
     }
 
     async goto() {
-        await this.page.goto("https://courses.ultimateqa.com/users/sign_in")
+        await this.context.page.goto("https://courses.ultimateqa.com/users/sign_in")
     }
 }
 
